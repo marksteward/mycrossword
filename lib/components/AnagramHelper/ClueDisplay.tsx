@@ -1,4 +1,4 @@
-import { decodeHtmlEntities, sanitize } from '~/utils/html';
+import { decodeHtmlEntities, sanitize } from '../../utils/html';
 
 function normalizeAccents(text: string): string {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

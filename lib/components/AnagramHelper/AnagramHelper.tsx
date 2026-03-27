@@ -2,10 +2,10 @@ import * as React from 'react';
 import ClueDisplay from './ClueDisplay';
 import SolutionDisplay from './SolutionDisplay';
 import WordWheel from './WordWheel';
-import { Cell, Clue, SeparatorLocations } from '~/types';
-import Button from '~/components/Button/Button';
-import { getBem } from '~/utils/bem';
-import CloseIcon from '~/icons/CloseIcon';
+import { Cell, Clue, SeparatorLocations } from '../../types';
+import Button from '../../components/Button/Button';
+import { getBem } from '../../utils/bem';
+import CloseIcon from '../../icons/CloseIcon';
 import './AnagramHelper.css';
 
 interface AnagramHelperProps {

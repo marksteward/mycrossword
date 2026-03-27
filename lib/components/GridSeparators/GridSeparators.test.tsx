@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import data from '~/testData/test.valid.1';
+import data from '../../testData/test.valid.1';
 import GridSeparators from './GridSeparators';
-import { DEFAULT_CELL_SIZE } from '~/utils/general';
+import { DEFAULT_CELL_SIZE } from '../../utils/general';
 
 interface RectProps {
   width: string;

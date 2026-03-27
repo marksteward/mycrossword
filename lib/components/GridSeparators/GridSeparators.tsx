@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Direction, GuardianClue } from '~/types';
+import { Direction, GuardianClue } from '../../types';
 
 function getPos(val: number, cellSize: number) {
   return val * (cellSize + 1) + 1;

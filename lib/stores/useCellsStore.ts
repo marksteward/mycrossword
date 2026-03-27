@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Cell, CellPosition } from '~/types';
+import type { Cell, CellPosition } from '../types';
 
 type CellsStore = {
   cells: Cell[];

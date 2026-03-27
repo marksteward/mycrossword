@@ -1,12 +1,12 @@
 import userEvent from '@testing-library/user-event';
-import { CellPosition, GuessGrid } from '~/types';
-import data from '~/testData/test.valid.1';
-import { initialiseGuessGrid } from '~/utils/guess';
-import { initialiseStores } from '~/utils/test';
+import { CellPosition, GuessGrid } from '../../types';
+import data from '../../testData/test.valid.1';
+import { initialiseGuessGrid } from '../../utils/guess';
+import { initialiseStores } from '../../utils/test';
 import Controls from './Controls';
 import { act, render, screen } from '@testing-library/react';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { useCluesStore } from '~/stores/useCluesStore';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
 
 function getLocalStorageGuessGrid(): GuessGrid {
   const str = localStorage.getItem(data.id);

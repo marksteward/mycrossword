@@ -1,5 +1,5 @@
-import { Cell, SeparatorLocations } from '~/types';
-import { getBem } from '~/utils/bem';
+import { Cell, SeparatorLocations } from '../../types';
+import { getBem } from '../../utils/bem';
 import './SolutionDisplay.css';
 
 function getSeparatorClass(

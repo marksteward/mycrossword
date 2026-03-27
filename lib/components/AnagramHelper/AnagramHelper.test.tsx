@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DEFAULT_HTML_TAGS } from '~/utils/general';
-import data from '~/testData/test.valid.1';
-import { getGroupCells, getGroupSeparators } from '~/utils/clue';
-import { initialiseStores } from '~/utils/test';
+import { DEFAULT_HTML_TAGS } from '../../utils/general';
+import data from '../../testData/test.valid.1';
+import { getGroupCells, getGroupSeparators } from '../../utils/clue';
+import { initialiseStores } from '../../utils/test';
 import AnagramHelper from './AnagramHelper';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { useCellsStore } from '~/stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { useCellsStore } from '../../stores/useCellsStore';
 
 test('it renders', async () => {
   initialiseStores(data);

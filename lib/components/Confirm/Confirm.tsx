@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '../Button/Button';
-import { getBem } from '~/utils/bem';
+import { getBem } from '../../utils/bem';
 import './Confirm.css';
 
 export const DEFAULT_TIMEOUT = 10;

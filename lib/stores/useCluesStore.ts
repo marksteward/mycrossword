@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Clue } from '~/types';
+import { Clue } from '../types';
 
 type CluesStore = {
   clues: Clue[];

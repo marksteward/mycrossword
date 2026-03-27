@@ -1,9 +1,9 @@
 import * as React from 'react';
-import GridCell, { getDimensions } from '~/components/GridCell/GridCell';
-import GridInput from '~/components/GridInput/GridInput';
-import { isValidChar } from '~/utils/general';
-import useDebounce from '~/hooks/useDebounce/useDebounce';
-import GridSeparators from '~/components/GridSeparators/GridSeparators';
+import GridCell, { getDimensions } from '../../components/GridCell/GridCell';
+import GridInput from '../../components/GridInput/GridInput';
+import { isValidChar } from '../../utils/general';
+import useDebounce from '../../hooks/useDebounce/useDebounce';
+import GridSeparators from '../../components/GridSeparators/GridSeparators';
 import {
   Cell,
   CellChange,
@@ -13,13 +13,13 @@ import {
   Clue,
   GuardianClue,
   GuessGrid,
-} from '~/types';
-import { getGuessGrid } from '~/utils/guess';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { mergeCell } from '~/utils/cell';
-import { isCluePopulated } from '~/utils/clue';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { getBem } from '~/utils/bem';
+} from '../../types';
+import { getGuessGrid } from '../../utils/guess';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { mergeCell } from '../../utils/cell';
+import { isCluePopulated } from '../../utils/clue';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { getBem } from '../../utils/bem';
 import './Grid.css';
 
 const ARROWS_KEYS = [

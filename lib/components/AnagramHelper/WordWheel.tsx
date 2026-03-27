@@ -1,4 +1,4 @@
-import { getBem } from '~/utils/bem';
+import { getBem } from '../../utils/bem';
 import './WordWheel.css';
 
 const round = (val: number) => Math.round(val * 100) / 100;

@@ -1,4 +1,4 @@
-import { Cell, Clue, GuardianClue, SeparatorLocations } from '~/types';
+import { Cell, Clue, GuardianClue, SeparatorLocations } from '../types';
 
 export function getGroupCells(groupIds: string[], cells: Cell[]) {
   const groupCells: Cell[] = [];

@@ -1,7 +1,7 @@
-import ChevronLeftIcon from '~/icons/ChevronLeftIcon';
-import ChevronRightIcon from '~/icons/ChevronRightIcon';
-import { getBem } from '~/utils/bem';
-import { decodeHtmlEntities, sanitize } from '~/utils/html';
+import ChevronLeftIcon from '../../icons/ChevronLeftIcon';
+import ChevronRightIcon from '../../icons/ChevronRightIcon';
+import { getBem } from '../../utils/bem';
+import { decodeHtmlEntities, sanitize } from '../../utils/html';
 import './StickyClue.css';
 
 interface StickyClueProps {

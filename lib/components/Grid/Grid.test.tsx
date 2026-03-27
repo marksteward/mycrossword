@@ -1,13 +1,13 @@
 import userEvent from '@testing-library/user-event';
-import { CellFocus, CellPosition, GuessGrid } from '~/types';
-import testData from '~/testData/test.valid.1';
-import { initialiseGuessGrid } from '~/utils/guess';
+import { CellFocus, CellPosition, GuessGrid } from '../../types';
+import testData from '../../testData/test.valid.1';
+import { initialiseGuessGrid } from '../../utils/guess';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { initialiseStores } from '~/utils/test';
+import { initialiseStores } from '../../utils/test';
 import Grid from './Grid';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { DEFAULT_CELL_SIZE } from '~/utils/general';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { DEFAULT_CELL_SIZE } from '../../utils/general';
 
 const cellMatcher = /[A-Z]/;
 

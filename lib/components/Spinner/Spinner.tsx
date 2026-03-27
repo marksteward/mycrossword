@@ -1,4 +1,4 @@
-import { getBem } from '~/utils/bem';
+import { getBem } from '../../utils/bem';
 import './Spinner.css';
 
 interface SpinnerProps {

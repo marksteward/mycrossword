@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { restoreConsoleMessage, suppressConsoleMessage } from '~/utils/jest';
+import { restoreConsoleMessage, suppressConsoleMessage } from '../../utils/jest';
 import Confirm, { DEFAULT_TIMEOUT } from './Confirm';
 
 test('it renders', async () => {

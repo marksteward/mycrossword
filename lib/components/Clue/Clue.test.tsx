@@ -1,11 +1,11 @@
 import userEvent from '@testing-library/user-event';
-import { DEFAULT_HTML_TAGS } from '~/utils/general';
-import testData from '~/testData/test.valid.1';
-import { initialiseStores } from '~/utils/test';
+import { DEFAULT_HTML_TAGS } from '../../utils/general';
+import testData from '../../testData/test.valid.1';
+import { initialiseStores } from '../../utils/test';
 import Clue from './Clue';
 import { render, screen } from '@testing-library/react';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { useCellsStore } from '~/stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { useCellsStore } from '../../stores/useCellsStore';
 
 test('it renders', () => {
   render(

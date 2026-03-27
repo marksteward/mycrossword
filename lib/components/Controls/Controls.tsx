@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { blankNeighbours, mergeCell } from '~/utils/cell';
+import { blankNeighbours, mergeCell } from '../../utils/cell';
 import {
   getCrossingClueIds,
   getGroupCells,
   isCluePopulated,
 } from './../../utils/clue';
-import { getGuessGrid } from '~/utils/guess';
-import { Cell, CellChange, Char, Clue, GuessGrid } from '~/types';
-import Confirm from '~/components/Confirm/Confirm';
-import DropdownButton from '~/components/DropdownButton/DropdownButton';
-import Button from '~/components/Button/Button';
-import { getBem } from '~/utils/bem';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { useCluesStore } from '~/stores/useCluesStore';
+import { getGuessGrid } from '../../utils/guess';
+import { Cell, CellChange, Char, Clue, GuessGrid } from '../../types';
+import Confirm from '../../components/Confirm/Confirm';
+import DropdownButton from '../../components/DropdownButton/DropdownButton';
+import Button from '../../components/Button/Button';
+import { getBem } from '../../utils/bem';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
 import './Controls.css';
 
 interface ControlsProps {

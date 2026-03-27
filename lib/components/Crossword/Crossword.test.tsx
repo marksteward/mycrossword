@@ -4,7 +4,7 @@ import {
   DEFAULT_CELL_SIZE,
   DEFAULT_HTML_TAGS,
 } from '../../utils/general';
-import { GuessGrid } from '~/types';
+import { GuessGrid } from '../../types';
 import invalidData from './../../testData/test.invalid.1';
 import validData from './../../testData/test.valid.1';
 import Crossword from './Crossword';

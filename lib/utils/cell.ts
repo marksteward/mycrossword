@@ -1,4 +1,4 @@
-import { Cell, CellPosition, Char, GuardianClue, GuessGrid } from '~/types';
+import { Cell, CellPosition, Char, GuardianClue, GuessGrid } from '../types';
 
 export function mergeCell(newCell: Cell, cells: Cell[]) {
   return cells.map((cell) => {

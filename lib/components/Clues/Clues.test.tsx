@@ -1,9 +1,9 @@
-import { DEFAULT_HTML_TAGS } from '~/utils/general';
-import testData from '~/testData/test.valid.1';
-import { initialiseStores } from '~/utils/test';
+import { DEFAULT_HTML_TAGS } from '../../utils/general';
+import testData from '../../testData/test.valid.1';
+import { initialiseStores } from '../../utils/test';
 import Clues from './Clues';
 import { render, screen } from '@testing-library/react';
-import { useCluesStore } from '~/stores/useCluesStore';
+import { useCluesStore } from '../../stores/useCluesStore';
 
 const DEFAULT_GRID_HEIGHT = 481;
 

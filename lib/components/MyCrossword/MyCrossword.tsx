@@ -1,8 +1,8 @@
-import { getBem } from '~/utils/bem';
-import { CellChange, CellFocus, GuardianCrossword, GuessGrid } from '~/types';
-import { DEFAULT_CELL_MATCHER, DEFAULT_HTML_TAGS } from '~/utils/general';
+import { getBem } from '../../utils/bem';
+import { CellChange, CellFocus, GuardianCrossword, GuessGrid } from '../../types';
+import { DEFAULT_CELL_MATCHER, DEFAULT_HTML_TAGS } from '../../utils/general';
 import classNames from 'classnames';
-import Crossword from '~/components/Crossword/Crossword';
+import Crossword from '../../components/Crossword/Crossword';
 import './MyCrossword.css';
 
 type Theme =

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Clue from '~/components/Clue/Clue';
-import { CellFocus, Clue as ClueType } from '~/types';
+import Clue from '../../components/Clue/Clue';
+import { CellFocus, Clue as ClueType } from '../../types';
 import './Clues.css';
-import useBreakpoint from '~/hooks/useBreakpoint/useBreakpoint';
+import useBreakpoint from '../../hooks/useBreakpoint/useBreakpoint';
 
 interface CluesProps {
   allowedHtmlTags: string[];

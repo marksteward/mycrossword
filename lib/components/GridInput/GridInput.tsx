@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getBem } from '~/utils/bem';
+import { getBem } from '../../utils/bem';
 import './GridInput.css';
 
 interface GridInputProps {

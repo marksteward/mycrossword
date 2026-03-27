@@ -1,4 +1,4 @@
-import type { Cell, GuessGrid } from '~/types';
+import type { Cell, GuessGrid } from '../types';
 import { isValidChar } from './general';
 
 /**

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { DEFAULT_HTML_TAGS } from '~/utils/general';
+import { DEFAULT_HTML_TAGS } from '../../utils/general';
 import StickyClue from './StickyClue';
 
 test('it renders', () => {

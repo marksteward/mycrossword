@@ -1,8 +1,8 @@
-import { GuardianCrossword, GuessGrid } from '~/types';
+import { GuardianCrossword, GuessGrid } from '../types';
 import { initialiseCells } from './cell';
 import { initialiseClues } from './clue';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { useCluesStore } from '~/stores/useCluesStore';
+import { useCellsStore } from '../stores/useCellsStore';
+import { useCluesStore } from '../stores/useCluesStore';
 
 export function initialiseStores(
   data: GuardianCrossword,

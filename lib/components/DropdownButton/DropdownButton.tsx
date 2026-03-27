@@ -1,8 +1,8 @@
-import CaretDownIcon from '~/icons/CaretDownIcon';
+import CaretDownIcon from '../../icons/CaretDownIcon';
 import classNames from 'classnames';
 import * as React from 'react';
-import { isInViewport } from '~/utils/general';
-import { getBem } from '~/utils/bem';
+import { isInViewport } from '../../utils/general';
+import { getBem } from '../../utils/bem';
 import './DropdownButton.css';
 
 export interface DropdownMenuItem {

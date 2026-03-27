@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { CellFocus, CellPosition, Char } from '~/types';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { getBem } from '~/utils/bem';
+import { CellFocus, CellPosition, Char } from '../../types';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { getBem } from '../../utils/bem';
 import './GridCell.css';
 
 export const getDimensions = (cellSize: number, cellPos: CellPosition) => {

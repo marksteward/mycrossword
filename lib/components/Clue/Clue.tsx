@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { getBem } from '~/utils/bem';
-import type { CellFocus, CellPosition } from '~/types';
-import { useCellsStore } from '~/stores/useCellsStore';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { isInPerimeterRect } from '~/utils/general';
-import { decodeHtmlEntities, sanitize } from '~/utils/html';
+import { getBem } from '../../utils/bem';
+import type { CellFocus, CellPosition } from '../../types';
+import { useCellsStore } from '../../stores/useCellsStore';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { isInPerimeterRect } from '../../utils/general';
+import { decodeHtmlEntities, sanitize } from '../../utils/html';
 import './Clue.css';
 
 interface ClueProps {

@@ -1,29 +1,29 @@
 import * as React from 'react';
-import { initialiseGuessGrid, validateGuessGrid } from '~/utils/guess';
+import { initialiseGuessGrid, validateGuessGrid } from '../../utils/guess';
 import {
   CellChange,
   CellFocus,
   CellPosition,
   GuardianCrossword,
   GuessGrid,
-} from '~/types';
-import { useCluesStore } from '~/stores/useCluesStore';
-import { useCellsStore } from '~/stores/useCellsStore';
-import GridError from '~/components/GridError/GridError';
-import StickyClue from '~/components/StickyClue/StickyClue';
-import Grid from '~/components/Grid/Grid';
-import Clues from '~/components/Clues/Clues';
-import AnagramHelper from '~/components/AnagramHelper/AnagramHelper';
-import useLocalStorage from '~/hooks/useLocalStorage/useLocalStorage';
-import { initialiseCells } from '~/utils/cell';
+} from '../../types';
+import { useCluesStore } from '../../stores/useCluesStore';
+import { useCellsStore } from '../../stores/useCellsStore';
+import GridError from '../../components/GridError/GridError';
+import StickyClue from '../../components/StickyClue/StickyClue';
+import Grid from '../../components/Grid/Grid';
+import Clues from '../../components/Clues/Clues';
+import AnagramHelper from '../../components/AnagramHelper/AnagramHelper';
+import useLocalStorage from '../../hooks/useLocalStorage/useLocalStorage';
+import { initialiseCells } from '../../utils/cell';
 import {
   getGroupCells,
   getGroupSeparators,
   initialiseClues,
-} from '~/utils/clue';
-import { getBem } from '~/utils/bem';
-import Controls from '~/components/Controls/Controls';
-import useLocationHash from '~/hooks/useLocationHash/useLocationHash';
+} from '../../utils/clue';
+import { getBem } from '../../utils/bem';
+import Controls from '../../components/Controls/Controls';
+import useLocationHash from '../../hooks/useLocationHash/useLocationHash';
 import './Crossword.css';
 
 interface CrosswordProps {
