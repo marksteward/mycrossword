@@ -252,39 +252,37 @@ export default function Crossword({
               }}
             />
           ) : (
-            <>
-              {stickyClue !== 'never' ? (
-                <StickyClue
-                  allowedTags={allowedHtmlTags}
-                  num={
-                    parentClue?.group.length === 1
-                      ? `${parentClue.number}${parentClue.direction.charAt(0)}`
-                      : parentClue?.humanNumber
-                  }
-                  onMoveNext={() => moveToNextClue(true)}
-                  onMovePrev={() => moveToNextClue(false)}
-                  show={stickyClue}
-                  text={parentClue?.clue}
-                />
-              ) : null}
-              <Grid
-                cellMatcher={cellMatcher}
-                cells={storeCells}
-                cellSize={cellSize}
-                clues={storeClues}
-                cols={data.dimensions.cols}
-                guessGrid={guessGrid}
-                inputRef={inputRef}
-                onCellChange={onCellChange}
-                onCellFocus={onCellFocus}
-                onComplete={onComplete}
-                rawClues={data.entries}
-                rows={data.dimensions.rows}
-                setGuessGrid={saveGrid ?? setGuessGrid}
-              />
-            </>
+            <Grid
+              cellMatcher={cellMatcher}
+              cells={storeCells}
+              cellSize={cellSize}
+              clues={storeClues}
+              cols={data.dimensions.cols}
+              guessGrid={guessGrid}
+              inputRef={inputRef}
+              onCellChange={onCellChange}
+              onCellFocus={onCellFocus}
+              onComplete={onComplete}
+              rawClues={data.entries}
+              rows={data.dimensions.rows}
+              setGuessGrid={saveGrid ?? setGuessGrid}
+            />
           )}
         </div>
+        {stickyClue !== 'never' ? (
+          <StickyClue
+            allowedTags={allowedHtmlTags}
+            num={
+              parentClue?.group.length === 1
+                ? `${parentClue.number}${parentClue.direction.charAt(0)}`
+                : parentClue?.humanNumber
+            }
+            onMoveNext={() => moveToNextClue(true)}
+            onMovePrev={() => moveToNextClue(false)}
+            show={stickyClue}
+            text={parentClue?.clue}
+          />
+        ) : null}
         <Controls
           cells={storeCells}
           clues={storeClues}

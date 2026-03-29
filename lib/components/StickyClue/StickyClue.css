@@ -3,6 +3,7 @@
   align-items: center;
   position: sticky;
   top: 0;
+  width: 100%;
   padding: var(--grid-size) 0;
   background-color: var(--page-background);
   border-bottom: 1px solid var(--grid-background);
