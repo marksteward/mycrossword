@@ -355,6 +355,66 @@ export default function Grid({
     }
   };
 
+  const clearSelectedCell = () => {
+
+    cellChange(selectedCell, undefined);
+
+    // clear the cell's value
+    const updatedCell: Cell = {
+      ...selectedCell,
+      guess: undefined,
+    };
+
+    const updatedCells = mergeCell(updatedCell, cells);
+    setCells(updatedCells);
+
+    // mark clue(s) as unanswered (ones in group and crossing)
+    selectedCell.clueIds.forEach((clueId) => {
+      const clue = clues.find((c) => c.id === clueId);
+
+      if (clue) {
+        const populated = isCluePopulated(clue, updatedCells);
+        answerClue(clue.group, populated);
+      }
+    });
+
+    updateGuesses(updatedCells);
+  };
+
+  const setSelectedCell = (newGuess: Char) => {
+
+    cellChange(selectedCell, newGuess);
+
+    const updatedCell: Cell = {
+      ...selectedCell,
+      guess: newGuess,
+    };
+
+    const updatedCells = mergeCell(updatedCell, cells);
+
+    // overwrite the cell's value
+    setCells(updatedCells);
+
+    // if all clue's cells are populated, mark clue as answered
+    selectedCell.clueIds.forEach((clueId) => {
+      const clue = clues.find((c) => c.id === clueId)!;
+      const populated = isCluePopulated(clue, updatedCells);
+
+      if (populated) {
+        answerClue(clue.group, true);
+      }
+    });
+
+    // if all grid's cells are populated, mark crossword as complete
+    if (onComplete !== undefined) {
+      if (checkComplete() === true) {
+        onComplete();
+      }
+    }
+
+    updateGuesses(updatedCells);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (selectedClue === undefined || selectedCell === undefined) {
       return;
@@ -385,32 +445,13 @@ export default function Grid({
       // move to the next cell
       moveDirection(event.key);
     } else if (['Backspace', 'Delete'].includes(event.key)) {
-      cellChange(selectedCell, undefined);
-
-      // clear the cell's value
-      const updatedCell: Cell = {
-        ...selectedCell,
-        guess: undefined,
-      };
-
-      const updatedCells = mergeCell(updatedCell, cells);
-      setCells(updatedCells);
-
-      // mark clue(s) as unanswered (ones in group and crossing)
-      selectedCell.clueIds.forEach((clueId) => {
-        const clue = clues.find((c) => c.id === clueId);
-
-        if (clue) {
-          const populated = isCluePopulated(clue, updatedCells);
-          answerClue(clue.group, populated);
-        }
-      });
+      clearSelectedCell();
 
       if (event.key === 'Backspace') {
+        // FIXME: this should be done before clearing the current cell. Is there some back compat here or something?
         movePrev();
       }
 
-      updateGuesses(updatedCells);
     } else if (event.key === 'Tab') {
       // cycle through the clues
       const index = clues.findIndex((clue) => clue.selected);
@@ -443,38 +484,15 @@ export default function Grid({
     const key = event.target.value.toUpperCase();
 
     if (isValidChar(key, cellMatcher)) {
-      cellChange(selectedCell, key as Char);
-
-      const updatedCell: Cell = {
-        ...selectedCell,
-        guess: key as Char,
-      };
-
-      const updatedCells = mergeCell(updatedCell, cells);
-
-      // overwrite the cell's value
-      setCells(updatedCells);
-
-      // if all clue's cells are populated, mark clue as answered
-      selectedCell.clueIds.forEach((clueId) => {
-        const clue = clues.find((c) => c.id === clueId)!;
-        const populated = isCluePopulated(clue, updatedCells);
-
-        if (populated) {
-          answerClue(clue.group, true);
-        }
-      });
+      setSelectedCell(key as Char);
 
       moveNext();
 
-      // if all grid's cells are populated, mark crossword as complete
-      if (onComplete !== undefined) {
-        if (checkComplete() === true) {
-          onComplete();
-        }
-      }
+    } else if (key == ' ') {
+      clearSelectedCell();
 
-      updateGuesses(updatedCells);
+      moveNext();
+
     } else {
       // prevent keys scrolling page
       event.preventDefault();
