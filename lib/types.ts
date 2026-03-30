@@ -112,6 +112,11 @@ export type CellFocus = {
   clueId: string;
 };
 
+export type CellClueIds = {
+  across?: string;
+  down?: string;
+};
+
 export type GuessGrid = {
   value: Char[][];
 };

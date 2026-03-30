@@ -543,13 +543,19 @@ export default function Grid({
             selectedClue?.group.includes(clueId),
           );
 
-          const selectedClueIndex =
-            selectedClue !== undefined ? clueIds.indexOf(selectedClue.id) : -1;
+          const selectedClueDirection = selectedClue?.direction;
+
+          const clueIds_ = Object.fromEntries(
+            clueIds.map(id => [
+              clues.find(c => c.id === id).direction,
+              id
+            ])
+          )
 
           return (
             <GridCell
               cellSize={cellSize}
-              clueIds={clueIds}
+              clueIds={clueIds_}
               guess={guess}
               inputRef={inputRef}
               isHighlighted={isHighlighted}
@@ -558,7 +564,7 @@ export default function Grid({
               num={num}
               onCellFocus={onCellFocus}
               pos={pos}
-              selectedClueIndex={selectedClueIndex}
+              selectedClueDirection={selectedClueDirection}
             />
           );
         })}

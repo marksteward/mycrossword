@@ -26,7 +26,7 @@ interface GridCellProps {
   num?: number;
   onCellFocus?: (cellFocus: CellFocus) => void;
   pos: CellPosition;
-  selectedClueIndex: number;
+  selectedClueDirection: string;
 }
 
 function GridCell({
@@ -39,9 +39,9 @@ function GridCell({
   num,
   onCellFocus,
   pos,
-  selectedClueIndex,
+  selectedClueDirection,
 }: GridCellProps) {
-  if (clueIds.length !== 1 && clueIds.length !== 2) {
+  if (!clueIds.across && !clueIds.down) {
     throw new Error(
       'Crossword data error: cell does not have 1 or 2 directions',
     );
@@ -65,14 +65,20 @@ function GridCell({
   };
 
   const updateSelectedCell = () => {
-    let index = selectedClueIndex === -1 ? 0 : selectedClueIndex;
+    let direction = selectedClueDirection;
+    let swapDirection = false;
 
     // highlight the other direction if clicking the selected cell more than once
-    if (clueIds.length === 2 && isSelected) {
-      index = selectedClueIndex === 0 ? 1 : 0;
+    if (clueIds.across && clueIds.down && isSelected) {
+      swapDirection = true;
+    } else if (!clueIds[direction]) {
+      swapDirection = true;
     }
 
-    const clueId = clueIds[index];
+    if (swapDirection) {
+      direction = (direction == 'across') ? 'down' : 'across';
+    }
+    const clueId = clueIds[direction];
     selectClue(clueId);
 
     if (!isSelected) {
@@ -80,7 +86,7 @@ function GridCell({
     }
 
     // cell focus has switched
-    if (!isSelected || clueIds.length === 2) {
+    if (!isSelected || swapDirection) {
       cellFocus(pos, clueId);
     }
 
