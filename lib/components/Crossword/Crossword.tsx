@@ -6,6 +6,7 @@ import {
   CellPosition,
   GuardianCrossword,
   GuessGrid,
+  GuessRef,
 } from '../../types';
 import { useCluesStore } from '../../stores/useCluesStore';
 import { useCellsStore } from '../../stores/useCellsStore';
@@ -32,6 +33,7 @@ interface CrosswordProps {
   cellMatcher: RegExp;
   cellSize: number;
   data: GuardianCrossword;
+  guessRef: React.RefObject<GuessRef>;
   id: string;
   loadGrid?: GuessGrid;
   onCellChange?: (cellChange: CellChange) => void;
@@ -47,6 +49,7 @@ export default function Crossword({
   cellMatcher,
   cellSize,
   data,
+  guessRef,
   id,
   loadGrid,
   onCellChange,
@@ -264,6 +267,7 @@ export default function Crossword({
               onCellFocus={onCellFocus}
               onComplete={onComplete}
               rawClues={data.entries}
+              ref={guessRef}
               rows={data.dimensions.rows}
               setGuessGrid={saveGrid ?? setGuessGrid}
             />

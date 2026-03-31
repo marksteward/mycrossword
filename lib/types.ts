@@ -120,3 +120,7 @@ export type CellClueIds = {
 export type GuessGrid = {
   value: Char[][];
 };
+
+export type GuessRef = {
+  setGuessByPos: (pos: CellPosition, guess?: Char) => void;
+};

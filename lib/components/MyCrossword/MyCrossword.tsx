@@ -1,5 +1,5 @@
 import { getBem } from '../../utils/bem';
-import { CellChange, CellFocus, GuardianCrossword, GuessGrid } from '../../types';
+import { CellChange, CellFocus, GuardianCrossword, GuessGrid, GuessRef } from '../../types';
 import { DEFAULT_CELL_MATCHER, DEFAULT_HTML_TAGS } from '../../utils/general';
 import classNames from 'classnames';
 import Crossword from '../../components/Crossword/Crossword';
@@ -26,6 +26,7 @@ export interface MyCrosswordProps {
   cellSize?: number;
   className?: string;
   data: GuardianCrossword;
+  guessRef: React.RefObject<GuessRef>;
   id: string;
   loadGrid?: GuessGrid;
   onCellChange?: (cellChange: CellChange) => void;
@@ -43,6 +44,7 @@ export default function MyCrossword({
   cellMatcher = DEFAULT_CELL_MATCHER,
   className,
   data,
+  guessRef,
   id,
   loadGrid,
   onCellChange,
@@ -67,6 +69,7 @@ export default function MyCrossword({
         cellMatcher={cellMatcher}
         cellSize={cellSize}
         data={data}
+        guessRef={guessRef}
         id={id}
         key={id}
         loadGrid={loadGrid}

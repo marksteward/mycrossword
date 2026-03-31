@@ -13,6 +13,7 @@ import {
   Clue,
   GuardianClue,
   GuessGrid,
+  GuessRef,
 } from '../../types';
 import { getGuessGrid } from '../../utils/guess';
 import { useCellsStore } from '../../stores/useCellsStore';
@@ -59,7 +60,8 @@ interface GridProps {
   setGuessGrid: (value: GuessGrid | ((val: GuessGrid) => GuessGrid)) => void;
 }
 
-export default function Grid({
+const Grid = React.forwardRef<GuessRef, GridProps>(
+({
   cellMatcher,
   cells,
   cellSize,
@@ -73,7 +75,7 @@ export default function Grid({
   rawClues,
   rows,
   setGuessGrid,
-}: GridProps) {
+}, ref) => {
   const bem = getBem('Grid');
   const selectedCell = cells.find((cell) => cell.selected);
   const selectedClue = clues.find((clue) => clue.selected);
@@ -116,7 +118,7 @@ export default function Grid({
     setGuessGrid(debouncedGuesses);
   }, [debouncedGuesses]);
 
-  const cellChange = (cell: Cell, newGuess: Char | undefined) => {
+  const cellChange = (cell: Cell, newGuess?: Char) => {
     if (onCellChange !== undefined && cell.guess !== newGuess) {
       onCellChange({
         pos: cell.pos,
@@ -355,38 +357,14 @@ export default function Grid({
     }
   };
 
-  const clearSelectedCell = () => {
+  const setCell = (cell: Cell, newGuess: Char | undefined) => {
+    // FIXME does any of this rely on selectedCell being set?
+    // It was guarded previously
 
-    cellChange(selectedCell, undefined);
-
-    // clear the cell's value
-    const updatedCell: Cell = {
-      ...selectedCell,
-      guess: undefined,
-    };
-
-    const updatedCells = mergeCell(updatedCell, cells);
-    setCells(updatedCells);
-
-    // mark clue(s) as unanswered (ones in group and crossing)
-    selectedCell.clueIds.forEach((clueId) => {
-      const clue = clues.find((c) => c.id === clueId);
-
-      if (clue) {
-        const populated = isCluePopulated(clue, updatedCells);
-        answerClue(clue.group, populated);
-      }
-    });
-
-    updateGuesses(updatedCells);
-  };
-
-  const setSelectedCell = (newGuess: Char) => {
-
-    cellChange(selectedCell, newGuess);
+    cellChange(cell, newGuess);
 
     const updatedCell: Cell = {
-      ...selectedCell,
+      ...cell,
       guess: newGuess,
     };
 
@@ -395,25 +373,49 @@ export default function Grid({
     // overwrite the cell's value
     setCells(updatedCells);
 
-    // if all clue's cells are populated, mark clue as answered
-    selectedCell.clueIds.forEach((clueId) => {
-      const clue = clues.find((c) => c.id === clueId)!;
-      const populated = isCluePopulated(clue, updatedCells);
+    if (newGuess === undefined) {
+      // mark clue(s) as unanswered (ones in group and crossing)
+      cell.clueIds.forEach((clueId) => {
+        const clue = clues.find((c) => c.id === clueId);
 
-      if (populated) {
-        answerClue(clue.group, true);
-      }
-    });
+        if (clue) {
+          const populated = isCluePopulated(clue, updatedCells);
+          answerClue(clue.group, populated);
+        }
+      });
 
-    // if all grid's cells are populated, mark crossword as complete
-    if (onComplete !== undefined) {
-      if (checkComplete() === true) {
-        onComplete();
+    } else {
+      // if all clue's cells are populated, mark clue as answered
+      cell.clueIds.forEach((clueId) => {
+        const clue = clues.find((c) => c.id === clueId)!;
+        const populated = isCluePopulated(clue, updatedCells);
+
+        if (populated) {
+          answerClue(clue.group, true);
+        }
+      });
+
+      // if all grid's cells are populated, mark crossword as complete
+      if (onComplete !== undefined) {
+        if (checkComplete() === true) {
+          onComplete();
+        }
       }
     }
 
     updateGuesses(updatedCells);
   };
+
+  React.useImperativeHandle(ref, () => {
+    return {
+      setCellByPos(pos, guess) {
+        const cell = cells.find(
+          c => c.pos.col === pos.col && c.pos.row === pos.row
+        );
+        setCell(cell, guess);
+      },
+    };
+  }, [cells]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (selectedClue === undefined || selectedCell === undefined) {
@@ -445,7 +447,7 @@ export default function Grid({
       // move to the next cell
       moveDirection(event.key);
     } else if (['Backspace', 'Delete'].includes(event.key)) {
-      clearSelectedCell();
+      setCell(selectedCell, undefined);
 
       if (event.key === 'Backspace') {
         // FIXME: this should be done before clearing the current cell. Is there some back compat here or something?
@@ -484,12 +486,12 @@ export default function Grid({
     const key = event.target.value.toUpperCase();
 
     if (isValidChar(key, cellMatcher)) {
-      setSelectedCell(key as Char);
+      setCell(selectedCell, key as Char);
 
       moveNext();
 
     } else if (key == ' ') {
-      clearSelectedCell();
+      setCell(selectedCell, undefined);
 
       moveNext();
 
@@ -596,4 +598,6 @@ export default function Grid({
       </div>
     </div>
   );
-}
+});
+
+export default Grid;
