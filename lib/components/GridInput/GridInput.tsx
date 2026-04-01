@@ -12,23 +12,25 @@ const GridInput = React.forwardRef<HTMLInputElement, GridInputProps>(
   ({ onChange, onKeyDown, visible }, ref) => {
     const bem = getBem('GridInput');
     return (
-      <input
-        autoComplete="off"
-        autoCorrect="off"
-        autoFocus={false}
-        className={bem(
-          'GridInput',
-          !visible ? 'GridInput--inclusivelyHidden' : null,
-        )}
-        maxLength={1}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        ref={ref}
-        spellCheck="false"
-        tabIndex={-1}
-        type="text"
-        value=""
-      />
+      <form autoComplete="off">
+        <input
+          autoComplete="off"
+          autoCorrect="off"
+          autoFocus={false}
+          className={bem(
+            'GridInput',
+            !visible ? 'GridInput--inclusivelyHidden' : null,
+          )}
+          maxLength={2}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          ref={ref}
+          spellCheck="false"
+          tabIndex={-1}
+          type="text"
+          value=""
+        />
+      </form>
     );
   },
 );
