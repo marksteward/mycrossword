@@ -142,8 +142,9 @@ const Grid = React.forwardRef<GuessRef, GridProps>(
   };
 
   const movePrev = () => {
+    // Redundant check
     if (selectedClue === undefined || selectedCell === undefined) {
-      return;
+      return undefined;
     }
 
     const atTheStart =
@@ -174,6 +175,7 @@ const Grid = React.forwardRef<GuessRef, GridProps>(
           selectCells(prevCluePos);
 
           cellFocus(prevCluePos, prevClueId);
+          return prevCluePos;
         }
       }
     } else {
@@ -185,10 +187,13 @@ const Grid = React.forwardRef<GuessRef, GridProps>(
       selectCells(cellPos);
 
       cellFocus(cellPos, selectedClue.id);
+      return cellPos;
     }
+    return selectedCell.pos;
   };
 
   const moveNext = () => {
+    // Redundant check
     if (selectedClue === undefined || selectedCell === undefined) {
       return;
     }
@@ -446,13 +451,16 @@ const Grid = React.forwardRef<GuessRef, GridProps>(
     if (isArrowKey(event.key)) {
       // move to the next cell
       moveDirection(event.key);
-    } else if (['Backspace', 'Delete'].includes(event.key)) {
-      setCell(selectedCell, undefined);
+    } else if (event.key === 'Backspace') {
+      // This doesn't update selectedCell
+      const prevPos = movePrev();
+      const prevCell = cells.find(
+        c => c.pos.col === prevPos.col && c.pos.row === prevPos.row,
+      );
+      setCell(prevCell, undefined);
 
-      if (event.key === 'Backspace') {
-        // FIXME: this should be done before clearing the current cell. Is there some back compat here or something?
-        movePrev();
-      }
+    } else if (event.key === 'Delete') {
+      setCell(selectedCell, undefined);
 
     } else if (event.key === 'Tab') {
       // cycle through the clues
